@@ -2,10 +2,12 @@ package edu.userdemo;
 
 import edu.userdemo.entity.User;
 import edu.userdemo.repository.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 
@@ -30,5 +32,9 @@ public class TestApplication implements CommandLineRunner {
 		userRepository.saveAll(lu);
 
 		System.out.println("all saved------------------");
+	}
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
 	}
 }

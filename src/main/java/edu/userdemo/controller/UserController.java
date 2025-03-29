@@ -1,5 +1,6 @@
 package edu.userdemo.controller;
 
+import edu.userdemo.dto.UserDTO;
 import edu.userdemo.entity.User;
 import edu.userdemo.repository.UserRepository;
 import edu.userdemo.service.UserService;
@@ -13,22 +14,23 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+    //calling service layer to create a new user given from postman.
 
-    @PostMapping
-    public User createUserController(@RequestBody User user) {
-        return userService.createUser(user);
+    @PostMapping("create")
+    public UserDTO createUserController(@RequestBody UserDTO userDTO) {
+        return userService.createUser(userDTO);
     }
     @GetMapping("all")
-    public List<User> getAllUserController() {
+    public List<UserDTO> getAllUserController() {
         return userService.getAllUser();
     }
     @GetMapping("all/{id}")
-    public User getUserController(@PathVariable Integer id) {
+    public UserDTO getUserController(@PathVariable Integer id) {
         return userService.getUserById(id);
     }
     @PutMapping("update/{id}")
-    public User updateUserController(@RequestBody User user, @PathVariable Integer id) {
-        return userService.updateUser(user,id);
+    public UserDTO updateUserController(@RequestBody UserDTO userDTO, @PathVariable Integer id) {
+        return userService.updateUser(userDTO,id);
     }
     @DeleteMapping("delete/{id}")
     public String deleteUserController(@PathVariable Integer id) {
